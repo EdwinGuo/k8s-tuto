@@ -3,6 +3,8 @@ kind: Ingress
 metadata:
   name: meow-ingress
   annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
 spec:
   rules:
@@ -14,7 +16,7 @@ spec:
           servicePort: 80
   - http:
       paths:
-      - path: /
+      - path: /flask
         backend:
           serviceName: flask-service
           servicePort: 3000
